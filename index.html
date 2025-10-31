@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Receitas Regionais</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Receitas Regionais</h1>
+    <nav>
+      <button id="btnUsuarios">Área do Usuário</button>
+      <button id="btnReceitas">Receitas</button>
+      <button id="btnSair" class="hidden">Sair da Conta</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Área de Autenticação / Cadastro -->
+    <section id="secUsuarios" class="hidden">
+      <h2>Área do Usuário</h2>
+
+      <div class="auth-forms">
+        <form id="formRegister">
+          <h3>Cadastrar</h3>
+          <input required id="nomeUsuario" placeholder="Nome" />
+          <input required id="emailUsuario" type="email" placeholder="Email" />
+          <input required id="senhaUsuario" type="password" placeholder="Senha" />
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <form id="formLogin">
+          <h3>Entrar</h3>
+          <input required id="loginEmail" type="email" placeholder="Email" />
+          <input required id="loginSenha" type="password" placeholder="Senha" />
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+
+      <h3>Usuários Cadastrados </h3>
+      <ul id="listaUsuarios"></ul>
+    </section>
+
+    <!-- Receitas -->
+    <section id="secReceitas" class="hidden">
+      <h2>Receitas</h2>
+
+      <div id="panelNovo" class="card">
+        <h3 id="formTitle">Cadastrar Receita</h3>
+        <form id="formReceita">
+          <input required id="tituloReceita" placeholder="Título da receita" />
+          <textarea required id="ingredientes" placeholder="Ingredientes (1 por linha)"></textarea>
+          <textarea required id="preparo" placeholder="Modo de Preparo (1 por linha)"></textarea>
+          <input id="tags" placeholder="Tags (ex: vegano, sem glúten)" />
+          <label class="fileLabel">Imagem (jpg/png)
+            <input id="imagemReceita" type="file" accept="image/*" />
+          </label>
+          <button type="submit" id="btnSalvar">Salvar Receita</button>
+          <button type="button" id="btnCancelarEdit" class="hidden">Cancelar edição</button>
+        </form>
+      </div>
+
+      <h3>Receitas Cadastradas</h3>
+      <div id="listaReceitas" class="gridReceitas"></div>
+    </section>
+  </main>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
