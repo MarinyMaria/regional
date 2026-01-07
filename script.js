@@ -1,4 +1,3 @@
-/* script.js - frontend */
 const API = "http://localhost:4000";
 
 const secUsuarios = document.getElementById("secUsuarios");
@@ -16,14 +15,12 @@ function mostrarSecao(sec) {
   secReceitas.classList.toggle("hidden", sec !== "receitas");
 }
 
-/* -------- Autenticação -------- */
 const formRegister = document.getElementById("formRegister");
 const formLogin = document.getElementById("formLogin");
 
 let user = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
 if (user) onLogin(user);
 
-// Registrar
 formRegister.addEventListener("submit", async (e) => {
   e.preventDefault();
   const nome = document.getElementById("nomeUsuario").value.trim();
@@ -47,7 +44,6 @@ formRegister.addEventListener("submit", async (e) => {
   }
 });
 
-// Login
 formLogin.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("loginEmail").value.trim();
@@ -85,7 +81,6 @@ btnSair.addEventListener("click", () => {
   mostrarSecao("usuarios");
 });
 
-/* -------- Receitas -------- */
 const formReceita = document.getElementById("formReceita");
 const listaReceitas = document.getElementById("listaReceitas");
 const imagemInput = document.getElementById("imagemReceita");
@@ -135,7 +130,6 @@ document.getElementById("btnCancelarEdit").addEventListener("click", () => {
   formReceita.reset();
 });
 
-/* Helper: converter imagem para base64 */
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -145,7 +139,6 @@ function fileToBase64(file) {
   });
 }
 
-/* Carregar receitas */
 async function carregarReceitas() {
   try {
     const res = await fetch(API + "/api/receitas");
@@ -158,7 +151,6 @@ async function carregarReceitas() {
   }
 }
 
-/* Renderizar cards */
 function renderReceitas(items) {
   listaReceitas.innerHTML = "";
   items.forEach(it => {
@@ -187,7 +179,6 @@ function renderReceitas(items) {
   });
 }
 
-/* -------- Modal -------- */
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
@@ -230,7 +221,6 @@ async function abrirDetalhe(id) {
 
     modalBody.append(titulo, tags, ingr, prep);
 
-    // Mostrar botões de edição/exclusão se for dono
     if (user && user.user && user.user.id === data.user_id) {
       const controls = document.createElement("div");
       controls.style.marginTop = "12px";
@@ -257,8 +247,7 @@ async function abrirDetalhe(id) {
       controls.append(btnEditar, btnExcluir);
       modalBody.appendChild(controls);
     }
-
-    // 👉 mostrar o modal (importante!)
+    
     modal.classList.remove("hidden");
   } catch (err) {
     alert("Erro: " + err.message);
@@ -276,5 +265,4 @@ function preencherEdicao(data) {
   fecharModal();
 }
 
-/* Inicializar */
 carregarReceitas();
