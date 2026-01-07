@@ -266,3 +266,4 @@ function preencherEdicao(data) {
 }
 
 carregarReceitas();
+
